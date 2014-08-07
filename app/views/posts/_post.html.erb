@@ -1,14 +1,17 @@
 <div class='row'>
-      <div class='span0 well text-center'>
+    <% if logged_in? %>
+      <div class='span0 well '>
         <%= link_to vote_post_path(post, vote:true), method: 'post' do %>
-            <i class='icon-arrow-up'></i>
+          <i class='icon-arrow-up'></i>
         <% end %>
-        <%= post.total_votes %>
-        <br/>
+        </br>
+        <span>&nbsp;<%= post.total_votes %></span>
+        </br>
         <%= link_to vote_post_path(post, vote:false), method: 'post' do %>
-            <i class='icon-arrow-down'></i>
+          <i class='icon-arrow-down'></i>
         <% end %>
       </div>
+    <% end %>
       <div class="span8 well">
         <%= render post.categories %>
         <h4><%= link_to post.title, fix_url(post.url) %></h4>
