@@ -22,7 +22,6 @@ module Sluggable
       count += 1
     end
     self.slug = the_slug
-    
   end
 
   def append_suffix(str, count)
