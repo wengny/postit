@@ -12,6 +12,18 @@ class User < ActiveRecord::Base
 
   sluggable_column :username
 
+  def two_factor_auth?
+    !self.phone.blank?
+  end
+
+  def generate_pin!
+    self.update_column(:pin, rand(10 ** 6)) # randome 6 digit number
+  end
+
+  def remove_pin!
+    self.update_column(:pin, nil) 
+  end
+
   def admin?
     self.role == 'admin'
   end
