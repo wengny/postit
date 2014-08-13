@@ -16,7 +16,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '=3.0.1'
-gem 'voteable_hw', #'=0.0.2', path: '/Users/hweng/git/my_folder/course2/voteable_gem'
+#gem 'voteable_hw', '=0.0.2', path: '/Users/hweng/git/my_folder/course2/voteable_gem'
+gem 'voteable_hw'
 
 group :doc do
   gem 'sdoc', require: false
