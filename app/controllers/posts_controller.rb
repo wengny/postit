@@ -5,6 +5,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.sort_by{|x| x.total_votes}.reverse
+
+    respond_to do |format|
+      format.html #show.html.erb
+      format.json { render json: @posts }
+    end
   end
 
   def show
@@ -54,6 +59,7 @@ class PostsController < ApplicationController
         redirect_to :back
       end
       format.js
+
     end
   end
 

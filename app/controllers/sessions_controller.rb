@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       if user.two_factor_auth?
         session[:two_factor] = true
         user.generate_pin!
+        user.send_pin_to_twilio
         redirect_to pin_path
       else
         login_user!(user)

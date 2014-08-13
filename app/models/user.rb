@@ -1,3 +1,5 @@
+
+
 class User < ActiveRecord::Base
   include Sluggable
   
@@ -22,6 +24,21 @@ class User < ActiveRecord::Base
 
   def remove_pin!
     self.update_column(:pin, nil) 
+  end
+
+  def send_pin_to_twilio
+    # put your own credentials here 
+    account_sid = 'AC558fa903cbac81e5576269745d22362e' 
+    auth_token = '62ac0a5c36fe6e9745c8442f1b959691' 
+     
+    # set up a client to talk to the Twilio REST API 
+    client = Twilio::REST::Client.new account_sid, auth_token 
+     
+    msg = "Hey, please input the pin to continue login: #{self.pin}"
+    to = self.phone
+    client.account.messages.create({
+      :from => '+18582231358', :to => to, :body => msg   
+    })
   end
 
   def admin?
